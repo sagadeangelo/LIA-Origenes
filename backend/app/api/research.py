@@ -64,6 +64,37 @@ class Archive:
             raise HTTPException(503, "Ollama no devolvió vectores válidos. Comprueba el modelo embeddinggemma.") from None
 
 
+@router.get("/internet-archive")
+def internet_archive_search(
+    apellido: str = Query(min_length=2, max_length=80),
+    limite: int = Query(default=10, ge=1, le=20),
+):
+    """Busca candidatos bibliograficos sin atribuir genealogia."""
+    from ..integrations.sources.internet_archive import buscar_documentos
+
+    try:
+        registros = buscar_documentos(apellido, limite=limite)
+    except ValueError as exc:
+        raise HTTPException(422, str(exc)) from None
+    except (httpx.HTTPError, httpx.InvalidURL):
+        raise HTTPException(
+            503,
+            "Internet Archive no esta disponible temporalmente."
+        ) from None
+
+    return {
+        "apellido": apellido.strip(),
+        "fuente": "Internet Archive",
+        "tipo": "busqueda_bibliografica",
+        "verificacion": "pendiente",
+        "total": len(registros),
+        "records": registros,
+        "advertencia": (
+            "Los resultados son pistas bibliograficas, "
+            "no pruebas de ascendencia familiar."
+        ),
+    }
+
 @router.get("/sources")
 def sources(request: Request):
     with request.app.state.archive.connect() as db:
