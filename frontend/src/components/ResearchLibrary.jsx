@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import WikidataSurname from './WikidataSurname'
 
 const countries={MX:'México',ES:'España',PT:'Portugal',AR:'Argentina',BR:'Brasil',CO:'Colombia',PE:'Perú',CL:'Chile'}
 
@@ -50,6 +51,7 @@ export default function ResearchLibrary({surname}) {
   return <section className="research">
     <button type="button" aria-expanded={open} onClick={toggle} disabled={busy}>Biblioteca documental y rutas</button>
     {open&&<div className="parchment"><h2>Biblioteca documental</h2>
+      <WikidataSurname surname={surname}/>
       <form onSubmit={upload}><fieldset disabled={busy}><legend>Importar obra</legend>
         <label>Archivo PDF, TXT, Markdown o DOCX (hasta 24 MiB)<input type="file" name="file" accept=".pdf,.txt,.md,.docx" required/></label>
         <label>Tipo de fuente<select name="category">{['Libro histórico','Diccionario','Armorial','Registro genealógico'].map(x=><option key={x}>{x}</option>)}</select></label>

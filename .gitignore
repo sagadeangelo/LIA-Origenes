@@ -8,3 +8,10 @@ dist/
 logs/
 
 data/
+/backups/
+*.bak
+*.bak_*
+*.backup
+*.backup_*
+*.pyc
+.pytest_cache/

@@ -6,6 +6,7 @@ from backend.app.services.shield_generator import render_preview
 from fastapi.staticfiles import StaticFiles
 from backend.app.api.payments import router
 from backend.app.api.research import Archive, router as research_router
+from backend.app.api.wikidata import router as wikidata_router
 from backend.app.core.config import ROOT, Settings
 from backend.app.core.database import initialize
 from backend.app.integrations.payments.mercadopago import Orders
@@ -27,6 +28,7 @@ def create_app(settings=None, transport=None):
     app.include_router(router)
     app.state.archive = Archive()
     app.include_router(research_router)
+    app.include_router(wikidata_router)
 
     @app.get("/api/health")
     def health():
