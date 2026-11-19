@@ -4,7 +4,8 @@ import {api, file} from './services/api'
 
 export default function App(){
   const [catalog,setCatalog]=useState(null), [query,setQuery]=useState('')
-  const [result,setResult]=useState(null), [missing,setMissing]=useState(false)
+  const [result,setResult]=useState(null), [submitted,setSubmitted]=useState('')
+  const [matches,setMatches]=useState([])
   const [order,setOrder]=useState(null), [busy,setBusy]=useState(true), [error,setError]=useState('')
   async function run(action){
     setBusy(true); setError('')
@@ -20,7 +21,7 @@ export default function App(){
     if (!term) return
     await run(async()=>{
       const data=await (await api('/surnames?q='+encodeURIComponent(term))).json()
-      setResult(data.result); setMissing(!data.result); setQuery(term)
+      setResult(data.result); setMatches(data.matches || []); setSubmitted(term); setQuery(term)
     })
   }
   async function refresh(id){
@@ -42,10 +43,11 @@ export default function App(){
     <main><section className="hero"><div><p className="overline">ARCHIVO ONOMÁSTICO</p><h1>El atlas de<br/><i>los apellidos</i></h1>
       <p className="intro">Explora los lugares y las fuentes que guardan la historia de un apellido.</p>
       <form onSubmit={e=>{e.preventDefault();search(query)}}><label htmlFor="surname">Busca en el archivo</label>
-        <div className="search"><input id="surname" value={query} maxLength={80} onChange={e=>setQuery(e.target.value)} placeholder="Escribe un apellido" required/><button disabled={busy}>Buscar</button></div></form>
-      <div className="links">{catalog?.surnames.map(p=><button disabled={busy} key={p.name} onClick={()=>search(p.name)}>{p.name} ↗</button>)}</div></div>
+        <div className="search"><input id="surname" value={query} maxLength={80} onChange={e=>setQuery(e.target.value)} placeholder="Ej. Tovar Amaral" required/><button disabled={busy}>Buscar</button></div></form>
+      {matches.length > 0 && <p role="status">Fichas disponibles para «{submitted}». Elige un apellido.</p>}
+      <div className="links">{(matches.length ? matches.map(name=>({name})) : catalog?.surnames)?.map(p=><button disabled={busy} key={p.name} onClick={()=>search(p.name)}>{p.name} ↗</button>)}</div></div>
       <HistoricalMap places={catalog?.surnames||[]} selected={result?.name} choose={search} busy={busy}/></section>
-      {error&&<p role="alert">{error}</p>}{missing&&<p role="status">El archivo aún no contiene una ficha de «{query}».</p>}
+      {error&&<p role="alert">{error}</p>}{submitted && !result && !matches.length &&<p role="status">El archivo aún no contiene una ficha de «{submitted}».</p>}
       {result&&<section className="parchment"><p className="overline">{result.region} · {result.place}</p><h2>{result.name}</h2>
         <p>{result.summary}</p><a href={result.url} target="_blank" rel="noreferrer">{result.source} ↗</a>
         <div className="products">{Object.entries(catalog.products).map(([key,p])=><article key={key}><h3>{p.name}</h3>

@@ -37,7 +37,12 @@ def create_app(settings=None, transport=None):
         if key:
             row = CATALOG[key]
             return {"result": {k: row[k] for k in ("name", "place", "region", "summary", "source", "url", "mark")}}
-        return {"result": None}
+        matches = []
+        for word in q.split():
+            candidate = lookup(word)
+            if candidate and candidate not in matches:
+                matches.append(candidate)
+        return {"result": None, "matches": [CATALOG[key]["name"] for key in matches]}
 
     dist = ROOT / "frontend/dist"
     if dist.is_dir():

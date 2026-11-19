@@ -29,6 +29,15 @@ class Demo(unittest.TestCase):
         self.assertIsNone(self.client.get("/api/surnames?q=Desconocido").json()["result"])
         self.assertEqual(self.client.get("/api/catalog").json()["products"]["pergamino"]["amount"], "30.00")
 
+    def test_two_surnames(self):
+        for term, expected in [("Tovar Amaral", ["Tovar", "Amaral"]),
+                               ("AMARAL  Tóbar", ["Amaral", "Tovar"]),
+                               ("Tovar Tobar", ["Tovar"]), ("Sin ficha", [])]:
+            with self.subTest(term=term):
+                data = self.client.get("/api/surnames", params={"q": term}).json()
+                self.assertIsNone(data["result"])
+                self.assertEqual(data["matches"], expected)
+
     def test_downloads(self):
         route = "/api/orders/" + self.order().json()["id"]
         self.assertEqual(self.client.get(route+"/files/pdf", headers=self.headers).status_code, 403)
