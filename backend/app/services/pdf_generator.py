@@ -9,9 +9,11 @@ from ..models.purchase import PRODUCTS
 
 def render_pdf(order):
     row = CATALOG[order["surname"]]
+    free = order["product"] == "free"
+    title = "Pergamino gratuito" if free else PRODUCTS[order["product"]]["name"]
     out = BytesIO()
     doc = SimpleDocTemplate(out, pagesize=A4, leftMargin=68, rightMargin=68, topMargin=85,
-                            title=f'{PRODUCTS[order["product"]]["name"]} · {row["name"]}')
+                            title=f'{title} · {row["name"]}')
     story = []
 
     def paragraph(content, size=13, font="Times-Roman"):
@@ -21,12 +23,14 @@ def render_pdf(order):
 
     paragraph("LIA ORÍGENES   /   ATLAS DE APELLIDOS", 10, "Helvetica")
     paragraph(row["name"], 42)
-    paragraph(PRODUCTS[order["product"]]["name"], 20, "Times-Italic")
+    paragraph(title, 20, "Times-Italic")
     paragraph(row["place"], 17)
     paragraph(row["summary"])
-    paragraph(row["detail"])
-    paragraph("Para continuar tu investigación", 17)
-    paragraph("Comienza con un acta familiar y sigue sus referencias a padres y lugares. Conserva la fecha, el archivo y la grafía exacta de cada asiento.")
+    if not free:
+        paragraph(row["detail"])
+    if not free:
+        paragraph("Para continuar tu investigación", 17)
+        paragraph("Comienza con un acta familiar y sigue sus referencias a padres y lugares. Conserva la fecha, el archivo y la grafía exacta de cada asiento.")
     if order["product"] == "legado":
         paragraph("Diseño del escudo", 17)
         paragraph("El escudo adjunto es una composición artística contemporánea inspirada en el apellido. La inicial identifica la pieza y la estrella representa la búsqueda de orígenes.")

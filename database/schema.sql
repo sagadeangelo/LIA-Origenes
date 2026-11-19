@@ -10,3 +10,8 @@ CREATE TABLE IF NOT EXISTS purchases (
     checkout TEXT,
     status TEXT NOT NULL DEFAULT 'pending'
 );
+
+CREATE TABLE IF NOT EXISTS shield_styles (
+    purchase_id TEXT PRIMARY KEY REFERENCES purchases(id),
+    palette TEXT NOT NULL
+);

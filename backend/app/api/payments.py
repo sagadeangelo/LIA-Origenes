@@ -1,3 +1,4 @@
+from typing import Literal
 from uuid import UUID, uuid4
 
 from fastapi import APIRouter, Depends, Header, HTTPException, Request
@@ -9,13 +10,14 @@ from ..core.security import owner, verify_signature
 from ..models.purchase import PRODUCTS
 from ..services.surname_research import lookup
 from ..services.pdf_generator import render_pdf
-from ..services.shield_generator import render_shield
+from ..services.shield_generator import original_palette, render_shield
 
 router = APIRouter(prefix="/api")
 
 
 class Selection(BaseModel):
     model_config = ConfigDict(extra="forbid")
+    palette: Literal["bosque", "carmesi", "azul"] | None = None
     product: str
     surname: str = Field(min_length=1, max_length=80)
 
@@ -48,15 +50,24 @@ def create(data: Selection, request: Request, idempotency_key: UUID = Header(),
     surname = lookup(data.surname)
     if not surname or data.product not in PRODUCTS:
         raise HTTPException(422, "Selecciona una ficha y un producto del catálogo.")
+    if data.palette and data.product != "legado":
+        raise HTTPException(422, "La paleta corresponde al Legado heráldico.")
+    palette = data.palette or original_palette(surname)
     # Persist the intent before the remote call, including across process restarts.
     with connect(settings) as db:
-        db.execute("""INSERT INTO purchases(id, attempt, owner, mode, surname, product, amount)
+        inserted = db.execute("""INSERT INTO purchases(id, attempt, owner, mode, surname, product, amount)
                       VALUES(?,?,?,?,?,?,?) ON CONFLICT(attempt) DO NOTHING""",
                    ("LIA-ORI-" + uuid4().hex, key, identity, settings.mode, surname,
                     data.product, PRODUCTS[data.product]["amount"]))
         row = db.execute("SELECT * FROM purchases WHERE attempt=?", (key,)).fetchone()
         if (row["owner"], row["mode"], row["surname"], row["product"]) != (identity, settings.mode, surname, data.product):
             raise HTTPException(409, "El intento ya corresponde a otra compra.")
+        if data.product == "legado":
+            if inserted.rowcount:
+                db.execute("INSERT INTO shield_styles VALUES (?,?)", (row["id"], palette))
+            style = db.execute("SELECT palette FROM shield_styles WHERE purchase_id=?", (row["id"],)).fetchone()
+            if palette != (style["palette"] if style else original_palette(surname)):
+                raise HTTPException(409, "Este intento pertenece a otro diseño.")
     if settings.mode == "sandbox" and not row["remote_id"]:
         remote_id, checkout = request.app.state.orders.create(row)
         with connect(settings) as db:
@@ -109,12 +120,13 @@ def download(ident: str, kind: str, request: Request, identity: str = Depends(ow
     with connect(settings) as db:
         row = mine(db, ident, identity, settings.mode)
         status = reconcile(db, request, row)
+        style = db.execute("SELECT palette FROM shield_styles WHERE purchase_id=?", (ident,)).fetchone()
     if status != "paid":
         raise HTTPException(403, "La descarga requiere un pago acreditado.")
     if kind == "pdf":
         content, mime = render_pdf(row), "application/pdf"
     elif kind == "svg" and row["product"] == "legado":
-        content, mime = render_shield(row["surname"]), "image/svg+xml"
+        content, mime = render_shield(row["surname"], style["palette"] if style else None), "image/svg+xml"
     else:
         raise HTTPException(404, "Archivo fuera de este producto.")
     return Response(content, media_type=mime, headers={"Cache-Control": "private, no-store",

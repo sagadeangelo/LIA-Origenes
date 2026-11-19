@@ -1,5 +1,8 @@
 from contextlib import asynccontextmanager
-from fastapi import FastAPI, Query
+from fastapi import FastAPI, HTTPException, Query, Response
+from typing import Literal
+from backend.app.services.pdf_generator import render_pdf
+from backend.app.services.shield_generator import render_shield
 from fastapi.staticfiles import StaticFiles
 from backend.app.api.payments import router
 from backend.app.core.config import ROOT, Settings
@@ -33,16 +36,33 @@ def create_app(settings=None, transport=None):
 
     @app.get("/api/surnames")
     def search(q: str = Query(min_length=1, max_length=80)):
+        if not q.strip() or not any(ch.isalpha() for ch in q):
+            raise HTTPException(422, "Escribe un apellido con letras.")
         key = lookup(q)
         if key:
             row = CATALOG[key]
-            return {"result": {k: row[k] for k in ("name", "place", "region", "summary", "source", "url", "mark")}}
+            return {"result": {k: row[k] for k in ("name", "place", "region", "summary", "detail", "source", "url", "mark")}}
         matches = []
         for word in q.split():
             candidate = lookup(word)
             if candidate and candidate not in matches:
                 matches.append(candidate)
         return {"result": None, "matches": [CATALOG[key]["name"] for key in matches]}
+
+    @app.get("/api/surnames/{surname}/parchment.pdf")
+    def free_parchment(surname: str):
+        key = lookup(surname)
+        if not key:
+            raise HTTPException(404, "Ficha desconocida.")
+        return Response(render_pdf({"surname": key, "product": "free"}), media_type="application/pdf",
+                        headers={"Content-Disposition": f'attachment; filename="Pergamino-gratuito-{key}.pdf"'})
+
+    @app.get("/api/surnames/{surname}/shield-preview.svg")
+    def shield_preview(surname: str, palette: Literal["bosque", "carmesi", "azul"]):
+        key = lookup(surname)
+        if not key:
+            raise HTTPException(404, "Ficha desconocida.")
+        return Response(render_shield(key, palette, preview=True), media_type="image/svg+xml")
 
     dist = ROOT / "frontend/dist"
     if dist.is_dir():

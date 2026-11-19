@@ -1,9 +1,17 @@
 from .surname_research import CATALOG
 
 
-def render_shield(key):
+PALETTES = {"bosque": "#243f41", "carmesi": "#723832", "azul": "#203d68"}
+
+
+def original_palette(key):
+    return "bosque" if key == "amaral" else "carmesi"
+
+
+def render_shield(key, palette=None, preview=False):
     name = CATALOG[key]["name"]
-    color = "#243f41" if key == "amaral" else "#723832"
+    color = PALETTES[palette or original_palette(key)]
+    stamp = '<text x="200" y="324" text-anchor="middle" fill="white">BOCETO</text>' if preview else ""
     return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 480">
     <title>Escudo artístico de {name}</title>
     <path d="M38 55 Q120 69 200 35 Q280 69 362 55 V214 Q356 313 200 397 Q44 313 38 214Z"
@@ -14,4 +22,4 @@ def render_shield(key):
     <text x="200" y="284" font-family="serif" font-size="133" text-anchor="middle" fill="#f6e6bd">{name[0]}</text>
     <path d="M29 398 Q200 424 371 398 L357 445 Q200 467 43 445Z" fill="#e8cf97"/>
     <text x="200" y="440" font-family="serif" font-size="27" text-anchor="middle" fill="#34281d">{name.upper()}</text>
-    </svg>'''.encode()
+    {stamp}</svg>'''.encode()
