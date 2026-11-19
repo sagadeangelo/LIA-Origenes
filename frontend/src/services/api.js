@@ -10,7 +10,12 @@ function sessionKey() {
 export async function api(path, options = {}, privateOrder = false) {
   const headers = {...options.headers}
   if (privateOrder) headers.Authorization = 'Bearer ' + sessionKey()
-  const response = await fetch('/api' + path, {...options, headers, cache:'no-store'})
+  let response
+  try {
+    response = await fetch('/api' + path, {...options, headers, cache:'no-store',signal:AbortSignal.timeout(45000)})
+  } catch {
+    throw new Error('El servidor no respondió. Comprueba la conexión local y vuelve a intentarlo.')
+  }
   if (!response.ok) {
     const err = await response.json().catch(() => ({}))
     throw new Error(typeof err.detail === 'string' ? err.detail : 'No se pudo completar la solicitud.')

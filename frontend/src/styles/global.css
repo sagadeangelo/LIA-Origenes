@@ -29,3 +29,17 @@ main{max-width:1620px;padding:24px clamp(12px,3.4vw,55px) 48px;min-height:78vh}
 .parchment,.receipt{color:#312619;margin-top:20px}.guide{padding:20px;background:#152432;border:1px solid #79603f;border-radius:6px}.guide h2{font-size:1.6rem}.guide p{margin:.5em 0}p[role=alert]{color:#ffc2a2}
 @media(max-width:1000px){.hero{display:flex;flex-direction:column}.discovery{position:static;background:#112332;width:100%;padding:16px 22px}.discovery h1{font-size:2.5rem}.discovery form{max-width:540px}.intro{max-width:none}.explorers button{font-size:1rem}.discovery .links{margin-top:3px}}
 @media(max-width:600px){.hero{gap:0}.explorers{grid-template-columns:1fr 1fr;gap:6px}.explorers button{min-height:55px;padding:6px}.explorers button span{font-size:1.5rem}.atlas-label{display:none}.atlas-pin span{font-size:.68rem}.atlas-pin:first-of-type span{bottom:auto;top:88%}.discovery h1{font-size:2rem}main{padding-top:10px}.parchment,.receipt{padding:18px}}
+
+.activity:empty{margin:0}
+.stages{border:1px solid #b79d69;margin:1rem 0;padding:.65rem}
+.stages legend{padding:0 .4rem}
+.stages button{margin:2px;background:#fff6de;border-color:#806943;color:#322716}
+.stages button[aria-pressed=true]{background:#27433e;color:white}
+.evidence{max-width:72ch}
+.paper-download{display:inline-block;margin:1rem 0;padding:.65rem 1rem;border:1px solid #816440;border-radius:4px}
+.workshop{display:grid;grid-template-columns:1fr auto;gap:1rem;align-items:center;padding:1.2rem 0;border-top:1px solid #af996d}
+.workshop label{margin:.6rem 0 .3rem}.workshop select{min-height:44px;padding:.45rem .8rem;color:#312619;background:#fff9e9;border:1px solid #826b46}
+.workshop img{max-width:100%;height:auto}
+:focus-visible{outline:3px solid #dd8427;outline-offset:3px}
+[role=alert]{padding:.6rem;color:#ffddd1}
+@media(max-width:600px){.workshop{grid-template-columns:1fr}.workshop img{justify-self:center}.links button,.stages button{min-height:44px}.atlas-pin{min-width:24px;min-height:24px}.products article,.workshop,.evidence{overflow-wrap:anywhere}.receipt button{max-width:100%}}
