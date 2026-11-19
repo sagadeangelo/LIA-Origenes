@@ -1,41 +1,306 @@
-# LIA Orígenes
+# 🏰 LIA Orígenes
 
-Atlas local de apellidos. Busca Tovar (también Tobar) o Amaral, o selecciona un punto del mapa. Cada ficha incluye contexto y una fuente consultable. El pergamino histórico cuesta 30 MXN. El legado heráldico cuesta 69 MXN e incluye el informe ampliado y un escudo artístico vectorial.
+### Atlas histórico de apellidos · Investigación documental · Genealogía asistida por IA
 
-## Windows
+**Explora el pasado. Descubre las fuentes. Investiga tus orígenes.**
 
-Requiere Python 3.12 con lanzador py, Node 22.12 o posterior y npm. Desde PowerShell:
+LIA Orígenes es una plataforma de investigación histórica y genealógica que combina un atlas interactivo de apellidos, bibliotecas documentales, inteligencia artificial local y herramientas de exploración histórica.
+
+Su objetivo es facilitar el acceso a información sobre el origen, la evolución y la presencia documental de los apellidos, conectando al usuario con fuentes históricas que pueden servir como punto de partida para una investigación familiar.
+
+El proyecto forma parte del ecosistema **LIA-Tech**.
+
+---
+
+## ✨ Características principales
+
+### 🗺️ Atlas histórico de apellidos
+
+- Exploración geográfica mediante un mapa interactivo de inspiración ibérica.
+- Búsqueda de apellidos y variantes ortográficas.
+- Fichas históricas con referencias consultables.
+- Contexto regional y orientación para investigaciones posteriores.
+- Catálogo inicial con apellidos como **Tovar, Tobar y Amaral**.
+
+### 📚 Biblioteca documental inteligente
+
+Un entorno para organizar, consultar y analizar documentos históricos.
+
+- Importación de archivos PDF, DOCX, TXT y Markdown.
+- Extracción y segmentación del contenido.
+- Conservación de referencias a páginas, párrafos y fragmentos.
+- Búsqueda semántica mediante embeddings.
+- Consulta de pasajes relacionados con apellidos, personas y lugares.
+- Acceso a los documentos originales.
+- Detección básica de entidades históricas y geográficas.
+- Prevención de importaciones duplicadas mediante SHA-256.
+
+La biblioteca utiliza PostgreSQL con pgvector para almacenar y recuperar información documental.
+
+### 🤖 Inteligencia artificial local
+
+LIA Orígenes integra herramientas de IA que permiten investigar documentos sin depender exclusivamente de servicios externos.
+
+**Tecnologías utilizadas:**
+
+- Ollama para ejecutar modelos localmente.
+- EmbeddingGemma para representaciones vectoriales.
+- pgvector para búsquedas por similitud.
+- FastAPI para la orquestación de consultas y procesamiento documental.
+
+La búsqueda semántica permite localizar pasajes relacionados por significado, incluso cuando no contienen exactamente las mismas palabras de la consulta.
+
+### 🏛️ Investigación en catálogos históricos
+
+El proyecto incorpora conectores para ampliar la exploración de información histórica.
+
+**Wikidata**
+
+- Consulta de información estructurada sobre apellidos.
+- Identificación de propiedades y referencias disponibles.
+- Diferenciación entre metadatos catalográficos y evidencias documentales.
+
+**Internet Archive**
+
+- Búsqueda de candidatos bibliográficos relacionados con apellidos.
+- Filtrado de resultados judiciales modernos no pertinentes.
+- Clasificación automática de documentos.
+- Evaluación de relevancia histórica y genealógica.
+- Identificación de títulos antiguos, mayorazgos y documentos históricos.
+- Tratamiento de determinados errores de reconocimiento óptico de caracteres (OCR).
+- Enlaces al registro original.
+
+El conector y su clasificador cuentan con pruebas automatizadas y validaciones sobre resultados reales. Su integración visual en React continúa en desarrollo.
+
+### 🧭 Rutas de investigación histórica
+
+La aplicación permite explorar posibles líneas de investigación geográfica a partir de un apellido y un país de destino.
+
+El sistema identifica referencias documentales que pueden ayudar a orientar búsquedas sobre presencia histórica, desplazamientos y asentamientos.
+
+**Importante:** una coincidencia entre apellido y lugar no demuestra por sí misma una migración familiar.
+
+### 🛡️ Heráldica y documentos personalizados
+
+LIA Orígenes incorpora un flujo de demostración para generar documentos históricos y recursos gráficos.
+
+| Producto | Contenido | Precio de demostración |
+|---|---|---|
+| Pergamino histórico | Informe histórico en PDF | $30 MXN |
+| Legado heráldico | Informe ampliado y escudo artístico vectorial | $69 MXN |
+
+El sistema permite simular órdenes, pagos aprobados y descargas.
+
+Los escudos generados son representaciones artísticas. No deben interpretarse automáticamente como blasones históricos pertenecientes a una familia concreta.
+
+---
+
+## 🏗️ Arquitectura tecnológica
+
+| Capa | Tecnología | Función |
+|---|---|---|
+| Frontend | React 19 + Vite 7 | Interfaz interactiva |
+| Backend | Python + FastAPI | API y servicios |
+| Base comercial | SQLite | Órdenes y demostraciones |
+| Base documental | PostgreSQL 16 | Almacenamiento histórico |
+| Búsqueda vectorial | pgvector | Recuperación semántica |
+| Inteligencia artificial | Ollama | Procesamiento local |
+| Embeddings | EmbeddingGemma | Representación de textos |
+| Contenedores | Docker Compose | Infraestructura documental |
+| Fuentes externas | Wikidata e Internet Archive | Exploración de catálogos |
+
+### Flujo general
+
+```text
+                    LIA ORÍGENES
+                         |
+                React + Vite
+                         |
+                   FastAPI
+                         |
+       +-----------------+------------------+
+       |                 |                  |
+ Atlas de apellidos  Biblioteca         Documentos
+       |             documental          comerciales
+       |                 |                  |
+ Catálogo histórico  PostgreSQL          SQLite
+       |             + pgvector              |
+       |                 |              PDF / SVG
+       |                Ollama
+       |                 |
+       |          Búsqueda semántica
+       |
+ Conectores históricos
+       |
+  +----+-------------+
+  |                  |
+Wikidata       Internet Archive
+```
+
+---
+
+## 🚀 Instalación local
+
+### Requisitos
+
+- Windows 11 o entorno compatible.
+- Python 3.12.
+- Node.js 22.12 o superior.
+- npm.
+- Docker Desktop para la biblioteca documental.
+- Ollama para la búsqueda semántica local.
+
+### 1. Clonar el repositorio
 
 ```powershell
-Set-Location 'C:\LIA_RECUPERACION\RECUPERACIONES_REPOSITORIOS\lia_origenes'
+git clone https://github.com/sagadeangelo/LIA-Origenes.git
+
+cd LIA-Origenes
+
 git switch work/mvp-lia-origenes
-git pull --ff-only origin work/mvp-lia-origenes
+```
+
+### 2. Verificar el proyecto
+
+```powershell
 .\scripts\Verificar-LIA-Origenes.ps1
+```
+
+### 3. Iniciar el MVP
+
+```powershell
 .\scripts\Iniciar-LIA-Origenes.ps1
 ```
 
-Abre http://127.0.0.1:8113. Verificar construye React y ejecuta las pruebas con SQLite temporal y transporte HTTP simulado. Construir-LIA-Origenes.ps1 permite solo instalar dependencias y compilar. Ctrl+C detiene el servidor.
+Abrir en el navegador:
 
-En modo demo busca un apellido, elige producto, pulsa **Simular pago aprobado** y descarga el PDF o el SVG. El modo demo funciona sin cuenta ni acceso al proveedor. La sesión de compra se conserva al recargar la pestaña. Cerrar la sesión del navegador puede hacer perder el acceso a sus órdenes. SQLite persiste en data/origenes.sqlite3. ORIGENES_DB permite cambiar su ubicación.
+**http://127.0.0.1:8113**
 
-El backend sirve la compilación de Vite y la API en el mismo origen. Para edición con recarga, inicia también npm run dev en frontend y abre http://127.0.0.1:5174. Consulta docs/PAGOS_Y_SEGURIDAD.md para el contrato sandbox.
+### 4. Iniciar la biblioteca documental
 
-## Biblioteca documental local
-
-Con Docker Desktop y Ollama activos, detén el servidor anterior con Ctrl+C y ejecuta desde la raíz:
+Con Docker Desktop y Ollama activos:
 
 ```powershell
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File ".\scripts\Iniciar-Investigacion.ps1"
 ```
 
-El iniciador solicita una contraseña del PostgreSQL exclusivo de Orígenes. Consérvala y usa la misma al reiniciar. Levanta pgvector en 127.0.0.1:55439, prepara embeddinggemma, compila la aplicación y arranca en modo demo en http://127.0.0.1:8113. La primera ejecución requiere descargar la imagen y el modelo. Las siguientes reutilizan el volumen biblioteca y el modelo. El archivo .env no participa. La base SQLite existente sigue atendiendo las órdenes.
+El iniciador prepara la infraestructura documental, solicita la contraseña de PostgreSQL cuando corresponde e inicia los servicios necesarios.
 
-En **Biblioteca documental y rutas**, importa un PDF con texto, TXT, Markdown o DOCX. Selecciona el tipo de obra y, opcionalmente, corrige el título y el autor. El original y los fragmentos se guardan en PostgreSQL. Los PDF conservan números de página, Word conserva el número de párrafo y los textos se citan por bloque y fragmento. La importación síncrona acepta hasta 24 MiB y tres millones de caracteres extraídos por obra. Los escaneos requieren OCR previo.
+La primera ejecución puede requerir descargar imágenes y modelos.
 
-La IA local convierte pasajes y consultas en vectores de 768 dimensiones mediante /api/embed. El índice HNSW ordena hasta ocho resultados por similitud coseno. Cada resultado muestra el texto, su localizador y el original descargable. La extracción de entidades usa reglas de fechas y nombres, títulos personales y un vocabulario geográfico y de apellidos acotado. Los resultados son candidatos para revisión documental.
+---
 
-Para explorar una ruta, selecciona primero una ficha del atlas y luego un país. El navegador puede preseleccionar un destino según su idioma regional. El usuario puede cambiarlo y la aplicación no solicita ubicación precisa ni consulta servicios de IP. El itinerario enlaza el lugar de la ficha con ese país e identifica pasajes donde coaparecen apellido y destino. Demostrar un viaje individual requiere contrastar los documentos. La biblioteca se comparte entre las sesiones de esta instalación local; los originales quedan disponibles a quienes tengan acceso al servidor.
+## 🔌 API
 
-La importación es atómica y deduplica el archivo por SHA-256. Un fallo del proveedor de vectores revierte la importación completa. Para ejecutar también la prueba SQL, configura ORIGENES_TEST_PG_DSN con una base PostgreSQL vacía y exclusiva de prueba que admita CREATE EXTENSION vector. La prueba usa vectores controlados y deja datos de prueba en esa base.
+El backend expone servicios HTTP para consultar el atlas, gestionar documentos y explorar fuentes.
 
-Referencias técnicas: https://docs.ollama.com/api/embed · https://ollama.com/library/embeddinggemma · https://github.com/pgvector/pgvector
+| Endpoint | Descripción |
+|---|---|
+| `GET /api/health` | Estado del servidor |
+| `GET /api/catalog` | Catálogo de productos y apellidos |
+| `GET /api/surnames?q=Tovar` | Consulta de apellido |
+| `GET /api/research/sources` | Biblioteca de fuentes |
+| `GET /api/research/search` | Búsqueda semántica |
+| `GET /api/research/route` | Ruta de investigación |
+| `GET /api/research/internet-archive` | Candidatos bibliográficos de Internet Archive |
+
+Ejemplo:
+
+```http
+GET /api/research/internet-archive?apellido=Tovar&limite=10
+```
+
+La respuesta permite consultar los registros y sus clasificaciones automáticas.
+
+La disponibilidad de ciertos endpoints depende de la configuración de los servicios locales.
+
+---
+
+## 🧪 Calidad y validación
+
+La investigación documental se desarrolla mediante pruebas automatizadas y verificaciones sobre resultados reales.
+
+**Última validación local reportada del clasificador:**
+
+- 68 pruebas aprobadas.
+- 8 subpruebas aprobadas.
+- 1 prueba omitida.
+- Sin fallos de clasificación en los seis documentos localizados durante la validación real.
+
+Los escenarios incluyen:
+
+- Detección de mayorazgos y documentos de linaje.
+- Identificación de documentos históricos antiguos.
+- Clasificación de coincidencias nominales.
+- Exclusión de registros judiciales modernos.
+- Tratamiento de determinados errores OCR.
+- Prevención de inferencias genealógicas no sustentadas.
+
+Los resultados corresponden a la validación local del desarrollo y no constituyen una garantía de precisión histórica universal.
+
+---
+
+## 🔒 Privacidad y responsabilidad histórica
+
+LIA Orígenes prioriza una investigación documental transparente.
+
+**Principios del proyecto:**
+
+1. Diferenciar hechos documentados de hipótesis.
+2. Identificar las fuentes originales cuando estén disponibles.
+3. No presentar coincidencias de apellido como pruebas de parentesco.
+4. No atribuir automáticamente escudos a personas o familias.
+5. Mantener el procesamiento documental local cuando sea posible.
+6. Reconocer los límites de la clasificación automática.
+
+La presencia de un apellido en un libro, registro o archivo **no demuestra una relación familiar directa**.
+
+Las conclusiones genealógicas requieren contrastar documentos primarios y establecer vínculos verificables entre personas y generaciones.
+
+---
+
+## 🛣️ Hoja de ruta
+
+| Etapa | Estado |
+|---|---|
+| MVP del atlas histórico | Implementado |
+| Generación de informes PDF y SVG | Implementado |
+| Simulación de órdenes y pagos | Implementado |
+| Biblioteca documental local | Implementado |
+| Búsqueda semántica con IA local | Implementado |
+| Integración de Wikidata | Implementado |
+| Conector Internet Archive | Validado localmente |
+| Clasificación documental avanzada | Validada localmente |
+| Biblioteca histórica interactiva en React | En desarrollo |
+| Ampliación de fuentes archivísticas | Planificado |
+| Investigación migratoria personalizada avanzada | Planificado |
+| Árboles familiares sustentados en documentos | Visión futura |
+
+---
+
+## 🌎 Visión del proyecto
+
+LIA Orígenes busca evolucionar hacia una plataforma que conecte:
+
+**Apellidos → Documentos → Personas → Lugares → Periodos históricos → Hipótesis genealógicas verificables.**
+
+La finalidad es que cada descubrimiento pueda conducir a una fuente, cada fuente a una nueva pregunta y cada investigación a una reconstrucción histórica más fundamentada.
+
+---
+
+## 👨‍💻 Desarrollo
+
+**Proyecto:** LIA Orígenes  
+**Ecosistema:** LIA-Tech  
+**Repositorio:** [sagadeangelo/LIA-Origenes](https://github.com/sagadeangelo/LIA-Origenes)  
+**Rama de desarrollo:** `work/mvp-lia-origenes`
+
+### Estado
+
+Proyecto en desarrollo activo. Algunas funciones están disponibles en modo demostración y otras requieren servicios locales adicionales.
+
+La licencia y las condiciones de contribución se definirán conforme avance el proyecto.
+
+---
+
+**LIA Orígenes — La historia comienza con una pregunta.**
