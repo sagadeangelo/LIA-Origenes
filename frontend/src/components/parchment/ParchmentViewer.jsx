@@ -8,7 +8,7 @@ export default function ParchmentViewer({record}) {
     <p className="overline">{record.region} · {record.place}</p>
     <h2 id="record-title" tabIndex="-1">{record.name}</h2>
     <p>{record.summary}</p>
-    <fieldset className="stages"><legend>Expedición histórica</legend>
+    <fieldset className="stages"><legend id="expedition-title" tabIndex="-1">Expedición histórica</legend>
       {stages.map((name,i)=><button type="button" key={name} aria-pressed={stage===i}
         onClick={()=>setStage(i)}>{i+1}. {name}</button>)}
     </fieldset>

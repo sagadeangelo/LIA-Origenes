@@ -41,6 +41,15 @@ export default function App(){
       if(data.result) requestAnimationFrame(()=>document.getElementById('record-title')?.focus())
     }, 'Buscando en el archivo…')
   }
+  function explore(index) {
+    const targets=['workshop-title','record-title','expedition-title']
+    if(result && index < targets.length){
+      setSection(null)
+      document.getElementById(targets[index])?.focus()
+      return
+    }
+    setSection(section===index?null:index)
+  }
   async function refresh(id){
     setOrder(await (await api('/orders/'+id,{},true)).json())
   }
@@ -68,7 +77,7 @@ export default function App(){
       <div className="links">{(matches.length ? matches.map(name=>({name})) : catalog?.surnames)?.map(p=><button disabled={busy} key={p.name} onClick={()=>search(p.name)}>{p.name} ↗</button>)}</div></div>
       </section>
       <nav className="explorers" aria-label="Explorar el atlas">{sections.map(([icon,title],i)=>
-        <button key={title} aria-expanded={section===i} onClick={()=>setSection(section===i?null:i)}>
+        <button key={title} aria-expanded={section===i} onClick={()=>explore(i)}>
           <span aria-hidden="true">{icon}</span>{title}</button>)}</nav>
       {section!==null&&<section className="guide"><h2>{sections[section][1]}</h2><p>{sections[section][2]}</p>
         {section!==3&&<div className="links">{catalog?.surnames.map(p=><button key={p.name} disabled={busy} onClick={()=>{search(p.name);setSection(null)}}>Explorar {p.name}</button>)}</div>}

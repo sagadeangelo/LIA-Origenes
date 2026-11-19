@@ -1,9 +1,9 @@
 import React from 'react'
 
 export default function ShieldCreator({record,palette,onChange}) {
-  const preview='/api/surnames/'+encodeURIComponent(record.name)+'/shield-preview.svg?palette='+palette
+  const preview='/api/surnames/'+encodeURIComponent(record.name)+'/shield-preview.png?palette='+palette
   return <section className="workshop" aria-labelledby="workshop-title">
-    <div><h3 id="workshop-title">Taller heráldico</h3>
+    <div><h3 id="workshop-title" tabIndex="-1">Taller heráldico</h3>
       <p><strong>Diseño artístico original.</strong> Elige el color de tu escudo. El Legado incluye la versión final en SVG y el informe PDF.</p>
       <p><strong>Heráldica histórica documentada.</strong> Esta ficha carece de una fuente que atribuya armas históricas a tu familia.</p>
       <label htmlFor="palette">Color del escudo</label>

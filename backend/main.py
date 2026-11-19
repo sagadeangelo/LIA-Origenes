@@ -2,7 +2,7 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI, HTTPException, Query, Response
 from typing import Literal
 from backend.app.services.pdf_generator import render_pdf
-from backend.app.services.shield_generator import render_shield
+from backend.app.services.shield_generator import render_preview
 from fastapi.staticfiles import StaticFiles
 from backend.app.api.payments import router
 from backend.app.core.config import ROOT, Settings
@@ -57,12 +57,12 @@ def create_app(settings=None, transport=None):
         return Response(render_pdf({"surname": key, "product": "free"}), media_type="application/pdf",
                         headers={"Content-Disposition": f'attachment; filename="Pergamino-gratuito-{key}.pdf"'})
 
-    @app.get("/api/surnames/{surname}/shield-preview.svg")
+    @app.get("/api/surnames/{surname}/shield-preview.png")
     def shield_preview(surname: str, palette: Literal["bosque", "carmesi", "azul"]):
         key = lookup(surname)
         if not key:
             raise HTTPException(404, "Ficha desconocida.")
-        return Response(render_shield(key, palette, preview=True), media_type="image/svg+xml")
+        return Response(render_preview(key, palette), media_type="image/png")
 
     dist = ROOT / "frontend/dist"
     if dist.is_dir():
