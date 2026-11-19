@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import ShieldCreator from './components/heraldry/ShieldCreator'
 import ParchmentViewer from './components/parchment/ParchmentViewer'
+import ResearchLibrary from './components/ResearchLibrary'
 import HistoricalMap from './components/map/HistoricalMap'
 import {api, file} from './services/api'
 
@@ -98,5 +99,6 @@ export default function App(){
         {order.status==='paid'&&<><button disabled={busy} onClick={()=>run(()=>file(order,'pdf'))}>Descargar pergamino PDF</button>
           {order.product==='legado'&&<button disabled={busy} onClick={()=>run(()=>file(order,'svg'))}>Descargar escudo SVG</button>}</>}
       </section>}
+      <ResearchLibrary surname={result?.name}/>
     </main><footer>LIA Orígenes <span>Historia de apellidos y heráldica artística</span></footer></>
 }

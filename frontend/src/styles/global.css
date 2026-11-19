@@ -43,3 +43,6 @@ main{max-width:1620px;padding:24px clamp(12px,3.4vw,55px) 48px;min-height:78vh}
 :focus-visible{outline:3px solid #dd8427;outline-offset:3px}
 [role=alert]{padding:.6rem;color:#ffddd1}
 @media(max-width:600px){.workshop{grid-template-columns:1fr}.workshop img{justify-self:center}.links button,.stages button{min-height:44px}.atlas-pin{min-width:24px;min-height:24px}.products article,.workshop,.evidence{overflow-wrap:anywhere}.receipt button{max-width:100%}}
+
+.research{margin-top:20px}.research .parchment{margin-top:10px}.research fieldset{border:1px solid #9a8256}.research input,.research select{display:block;width:min(100%,38rem);min-height:42px;padding:.45rem;font:inherit}
+.research form,.research details,.research h3{margin:1.2rem 0}.research blockquote{margin:.5rem 0;padding-left:1rem;border-left:2px solid #a1814c;overflow-wrap:anywhere}.research .citations>li{margin:1rem 0}.research p[role=alert]{color:#842d1e}
