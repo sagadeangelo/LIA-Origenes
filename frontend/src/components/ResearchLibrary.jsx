@@ -26,7 +26,7 @@ export default function ResearchLibrary({surname}) {
   const [busy,setBusy]=useState(false),[message,setMessage]=useState(''),[error,setError]=useState('')
   const [results,setResults]=useState(null),[route,setRoute]=useState(null)
   const [country,setCountry]=useState(()=>{
-    const region=new Intl.Locale(navigator.language).region
+    const region=navigator.language?.match(/-([A-Z]{2})(?:-|$)/)?.[1]
     return countries[region]?region:''
   })
   async function run(work){
@@ -51,7 +51,7 @@ export default function ResearchLibrary({surname}) {
     <button type="button" aria-expanded={open} onClick={toggle} disabled={busy}>Biblioteca documental y rutas</button>
     {open&&<div className="parchment"><h2>Biblioteca documental</h2>
       <form onSubmit={upload}><fieldset disabled={busy}><legend>Importar obra</legend>
-        <label>Archivo PDF, TXT o Markdown (hasta 24 MiB)<input type="file" name="file" accept=".pdf,.txt,.md" required/></label>
+        <label>Archivo PDF, TXT, Markdown o DOCX (hasta 24 MiB)<input type="file" name="file" accept=".pdf,.txt,.md,.docx" required/></label>
         <label>Tipo de fuente<select name="category">{['Libro histórico','Diccionario','Armorial','Registro genealógico'].map(x=><option key={x}>{x}</option>)}</select></label>
         <label>Título opcional<input name="title" maxLength={300}/></label>
         <label>Autor opcional<input name="author" maxLength={300}/></label>

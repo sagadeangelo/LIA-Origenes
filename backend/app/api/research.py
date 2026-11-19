@@ -144,6 +144,6 @@ def route(request:Request,surname:str=Query(max_length=80),country:str=Query(max
               WHERE e->>'tipo'='apellido' AND lower(e->>'texto')=ANY(%s))
             AND EXISTS (SELECT FROM jsonb_array_elements(entities) e WHERE e->>'tipo'='lugar'
               AND lower(e->>'texto')=ANY(%s)) ORDER BY source_id,seq LIMIT 12""",
-            (terms,[destination.lower()]+(["méjico"] if country.upper()=="MX" else []))).fetchall()
+            (terms,[destination.lower()]+(["méjico","mexico"] if country.upper()=="MX" else []))).fetchall()
     return {"origin":row["place"],"reference":row["url"],"destination":destination,
             "passages":passages,"kind":"itinerario de investigación"}

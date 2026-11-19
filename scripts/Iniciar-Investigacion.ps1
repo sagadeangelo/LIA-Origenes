@@ -9,11 +9,8 @@ try {
     docker compose --env-file $EmptyComposeEnv.FullName up -d --wait archivo
     if ($LASTEXITCODE) { throw 'PostgreSQL no pudo iniciar.' }
     $env:ORIGENES_RESEARCH_DSN = 'postgresql://origenes:' + [Uri]::EscapeDataString($env:ORIGENES_PG_PASSWORD) + '@127.0.0.1:55439/origenes'
-    ollama show embeddinggemma *> $null
-    if ($LASTEXITCODE) {
-        ollama pull embeddinggemma
-        if ($LASTEXITCODE) { throw 'No se pudo instalar el modelo en Ollama.' }
-    }
+    ollama pull embeddinggemma
+    if ($LASTEXITCODE) { throw 'No se pudo preparar el modelo en Ollama.' }
     $env:ORIGENES_MODE = 'demo'
     & "$PSScriptRoot/Construir-LIA-Origenes.ps1"
     & "$PSScriptRoot/Iniciar-LIA-Origenes.ps1"
