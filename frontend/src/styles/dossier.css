@@ -1,0 +1,174 @@
+.lo-folio, .lo-heraldry {
+  --folio-ink: #292923;
+  --folio-muted: #5c5142;
+  --folio-rule: #c3b397;
+  --folio-paper: #f4ebdd;
+  --folio-gold: #c6a46a;
+  --folio-serif: 'Cormorant Garamond', Georgia, serif;
+  --folio-sans: Inter, system-ui, sans-serif;
+  --folio-mono: 'IBM Plex Mono', ui-monospace, monospace;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.lo-folio {
+  color: var(--folio-ink);
+  background: var(--folio-paper);
+  border: 1px solid var(--folio-rule);
+  padding: clamp(1rem, 3.8vw, 3.5rem);
+}
+.lo-folio__masthead {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(110px, .75fr);
+  align-items: center;
+  gap: clamp(1rem, 4vw, 3rem);
+  padding-bottom: clamp(1.2rem, 3vw, 2.5rem);
+  border-bottom: 1px solid var(--folio-rule);
+}
+.lo-folio__label, .lo-heraldry__label {
+  margin: 0 0 .55rem;
+  font: 600 .72rem/1.5 var(--folio-sans);
+  text-transform: uppercase;
+  letter-spacing: .15em;
+}
+.lo-folio__label {color: var(--folio-muted)}
+.lo-folio #record-title {
+  margin: 0;
+  color: var(--folio-ink);
+  font: 500 clamp(2.8rem, 6.6vw, 6rem)/1.05 Cinzel, Georgia, serif;
+  letter-spacing: -.045em;
+}
+.lo-folio__epigraph {
+  max-width: 29ch;
+  margin: .4em 0 0;
+  font: italic 500 clamp(1.22rem, 2.2vw, 2rem)/1.2 var(--folio-serif);
+}
+.lo-folio__tree {margin: 0; text-align: center}
+.lo-folio__tree img {
+  display: block;
+  margin: auto;
+  max-width: min(100%, 295px);
+  height: auto;
+  mix-blend-mode: multiply;
+  mask-image: radial-gradient(ellipse farthest-side, black 78%, transparent 112%);
+}
+.lo-folio__tree figcaption, .lo-heraldry__plate figcaption {
+  margin-top: .55rem;
+  color: var(--folio-muted);
+  font: .7rem/1.5 var(--folio-mono);
+}
+.lo-folio__body {
+  display: grid;
+  align-items: start;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap: clamp(1.25rem,4vw,3.75rem);
+  padding-block: clamp(1.2rem,3vw,2.35rem);
+}
+.lo-folio h3,.lo-folio .lo-stages legend {
+  margin: 0 0 .8rem;
+  color: var(--folio-ink);
+  font: 600 clamp(1.45rem,2.4vw,2rem)/1.2 var(--folio-serif);
+}
+.lo-folio__summary, .lo-folio__evidence p {
+  margin: 0;
+  max-width: 64ch;
+  font: 400 1.14rem/1.55 var(--folio-serif);
+}
+.lo-folio__facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 2rem;
+  margin: 1.25rem 0 0;
+}
+.lo-folio__facts dt,.lo-heraldry label {
+  font: 600 .82rem/1.5 var(--folio-sans);
+}
+.lo-folio__facts dt {color: var(--folio-muted)}
+.lo-folio__facts dd {margin: .12rem 0 0; font: .9rem/1.5 var(--folio-mono)}
+.lo-stages {min-width: 0; border: 0; padding: 0; margin: 0 0 1rem}
+.lo-stages legend {padding: 0}
+.lo-stages__choices {display: flex; flex-wrap: wrap; gap: 3px}
+.lo-stages__choices button {
+  min-height: 44px;
+  padding: .5rem .72rem;
+  color: #403a31;
+  background: transparent;
+  border: 1px solid var(--folio-rule);
+  border-radius: 2px;
+  font: 500 .86rem/1.2 var(--folio-sans);
+}
+.lo-stages__choices button span {font-family: var(--folio-mono)}
+.lo-stages__choices button:hover {background: #e4dac7}
+.lo-stages__choices button[aria-pressed=true] {background: #263c39; color: #fff8e8; border-color: #263c39}
+.lo-folio__source {
+  display: inline-block;
+  margin-top: .8rem;
+  color: #3b5751;
+  font: 600 .9rem/1.5 var(--folio-sans);
+  text-underline-offset: .18em;
+}
+.lo-folio__download {
+  display: inline-flex; align-items: center; gap: .6rem;
+  min-height: 44px; max-width: 100%;
+  padding: .6rem .85rem;
+  border: 1px solid #9c8b72;
+  border-radius: 2px;
+  font: 600 .87rem/1.4 var(--folio-sans);
+  color: var(--folio-ink); text-decoration: none;
+}
+.lo-folio__download:hover {background: #e5dac7}
+.lo-heraldry {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(150px,.78fr);
+  align-items: center;
+  gap: clamp(1.1rem,4vw,4rem);
+  margin-top: 1.35rem;
+  padding: clamp(1rem,3.8vw,3.5rem);
+  color: #f4ebdd;
+  background: linear-gradient(110deg, #13212a 0%, #192a35 75%, #24353c 100%);
+  border: 1px solid #7a6a4e;
+}
+.lo-heraldry__label {color: #e2c38b}
+.lo-heraldry h3 {margin: 0; font: 500 clamp(2rem,4.3vw,3.55rem)/1.03 var(--folio-serif); color: #f7edde}
+.lo-heraldry__copy>p:not([class]) {max-width: 43ch; color: #dfd8c9; font: 400 1.12rem/1.5 var(--folio-serif)}
+.lo-heraldry label {display: block; margin: 1rem 0 .4rem; color: #f7edde}
+.lo-heraldry__palette {position: relative; width: min(100%, 16rem); --tincture:#243f41}
+.lo-heraldry__palette[data-palette=carmesi] {--tincture: #723832}
+.lo-heraldry__palette[data-palette=azul] {--tincture: #203d68}
+.lo-heraldry__palette::before {
+  content: ''; position: absolute; left: .82rem; top: 50%; transform: translateY(-50%);
+  width: .85rem; height: .85rem; background: var(--tincture); border: 1px solid #c4b698;
+  border-radius: 50%; pointer-events: none;
+}
+.lo-heraldry select {
+  width: 100%; min-height: 44px; color: #f4ebdd; color-scheme: dark; border-radius: 2px;
+  border: 1px solid #82765e; background: #17232d; padding: .59rem .6rem .59rem 2.25rem;
+  font: .95rem var(--folio-sans);
+}
+.lo-heraldry__note {
+  max-width: 60ch; margin: 1.4rem 0 0; padding-left: .85rem; border-left: 2px solid #97805c;
+  color: #d2cbbf; font: .87rem/1.5 var(--folio-sans);
+}
+.lo-heraldry__plate {margin: 0 auto; width: min(100%,260px); text-align: center}
+.lo-heraldry__frame {
+  display: grid; place-items: center; position: relative;
+  min-height: 200px; padding: 1rem; border: 1px solid #8f7751;
+  background: radial-gradient(ellipse at 17% 15%,#344752,#1a2a35 59%,#101c24);
+}
+.lo-heraldry__frame::before {content:''; position:absolute; inset:5px; border:1px solid #8f77514f; pointer-events:none}
+.lo-heraldry__frame img {width: min(100%,168px); height:auto; filter:drop-shadow(0 5px 6px #080f1566)}
+.lo-heraldry__plate figcaption {color: #e4d1ac}
+@media(max-width:760px) {
+  .lo-folio__body {grid-template-columns: 1fr}
+}
+@media(max-width:540px) {
+  .lo-folio__masthead {grid-template-columns: minmax(0,1fr) minmax(82px,.5fr); gap: .7rem}
+  .lo-folio__tree figcaption {font-size:.64rem}
+  .lo-folio__epigraph {font-size:1.1rem}
+  .lo-folio #record-title {font-size:clamp(2rem,9.4vw,3.1rem)}
+  .lo-heraldry {grid-template-columns: 1fr}
+  .lo-heraldry__plate {width:min(100%,210px)}
+}
+@media(prefers-reduced-motion:no-preference) {
+  .lo-folio {animation:folio-reveal .22s ease-out both}
+  @keyframes folio-reveal {from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+}

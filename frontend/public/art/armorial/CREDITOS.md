@@ -1,0 +1,12 @@
+# Colección Tovar · fichas de procedencia
+
+| Pieza | Atribución y alcance | Obra y condiciones |
+| --- | --- | --- |
+| Castilla | Armas descritas para Tovar en un repertorio que sitúa la casa en el entorno de Villarcayo. El registro no identifica al visitante con esa casa. También recoge una variante con dragantes de oro. | [Apelidos de Galicia, Tovar](https://apelidosgalicia.org/tovar-6995). La lámina contemporánea de Manuelfb55 (10 de enero de 2021) corresponde a la banda de oro con dragantes verdes. [Original y atribución](https://commons.wikimedia.org/wiki/File:Escudo_de_Armas_de_Tovar.svg). [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). Archivo íntegro, presentado sobre un soporte independiente. |
+| Aragón | Infanzones documentados en el siglo XVII según el repertorio de Jesús Sanz Lacorte, que remite a García Carraffa, Enciclopedia Aragonesa y Bizén d’o Río. La manga roja y el hierro en punta ayudan a distinguir este blasón. | [Libro de armoria, Tovar](https://www.armoria.info/libro_de_armoria/tovar.html). Solo se utiliza la descripción. El dibujo vectorial aragonés y el dibujo castellano de reserva son composiciones independientes de LIA Orígenes bajo [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/). |
+| Portugal | Testimonio gráfico del armorial portugués, identificado por obra y página. La fecha corresponde a la lámina. Queda pendiente una transcripción crítica del blasón completo. | Frei Manuel de Santo António e Silva, *Tesouro da nobreza de Portugal*, 1783, p. 221. [Reproducción y declaración de dominio público](https://commons.wikimedia.org/wiki/File:COA_Tovar_(Portugal)_-_Tesouro_de_Nobreza,_p._221.jpg). |
+| León | Referencia secundaria a un cuartel atribuido a Tovar con banda y dragantes. La descripción disponible es insuficiente para reconstruir sus colores. | José Luis Díez Pascual, [La heráldica de los palacios de León (España), p. 16](https://www.academia.edu/71231936/La_her%C3%A1ldica_de_los_palacios_de_Le%C3%B3n_Espa%C3%B1a_). Nota documental. |
+
+El [dibujo de Manuelfb55 de 2015](https://commons.wikimedia.org/wiki/File:Escudo_de_Tovar.svg) figura como comparación bibliográfica. Su descripción habla de barra y su ficha enumera CC BY-SA 3.0 y 4.0. La diferencia de dibujo no acredita otra rama.
+
+La [categoría de Commons](https://commons.wikimedia.org/wiki/Category:Coats_of_arms_of_Tovar) sirvió de índice. Se excluyeron las armas municipales. El visitante puede comparar imágenes y estudiar sus figuras. La atribución de armas a una persona requiere documentación propia.

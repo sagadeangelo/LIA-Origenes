@@ -1,0 +1,73 @@
+.lia-library{
+  --lib-night:#172536;
+  --lib-ink:#262722;
+  --lib-paper:#f4ebdd;
+  --lib-light:#f9f3ea;
+  --lib-gold:#c6a46a;
+  --lib-rule:#c6b99e;
+  --lib-green:#15594f;
+  margin:clamp(1.5rem,4vw,3.5rem) 0;
+  color:var(--lib-paper);
+  scroll-margin-top:1.5rem;
+  font-family:'Inter',system-ui,sans-serif;
+}
+.lia-library .lia-library-gate{
+  width:100%;min-height:96px;padding:1rem clamp(1rem,3vw,2.5rem);
+  display:flex;align-items:center;gap:1rem;text-align:left;
+  border:1px solid #8d7854;border-radius:.6rem;background:linear-gradient(112deg,#172536,#1f303a 68%,#172536);
+  color:var(--lib-paper);font:500 clamp(1.35rem,2.5vw,2.2rem)/1.18 'Cormorant Garamond',Georgia,serif;
+}
+.lia-library .lia-library-gate:hover{border-color:#e8c98c;background:#253644}
+.lia-gate-mark{display:grid;width:3rem;height:3rem;flex:none;place-items:center;border:1px solid var(--lib-gold);color:#e8c98c;border-radius:50%;font:2.2rem Georgia,serif}
+.lia-disclosure{margin-left:auto;font:1.4rem 'Inter',sans-serif;color:var(--lib-gold)}
+.lia-library-body{border:1px solid #776d5a;border-radius:.6rem;margin-top:12px;background:var(--lib-night);overflow-wrap:anywhere}
+.lia-library-nav{display:flex;gap:.35rem;flex-wrap:wrap;padding:.8rem clamp(.75rem,3vw,2rem);margin:0}
+.lia-library .lia-library-nav button{min-height:44px;padding:.45rem .8rem;border-radius:4px;font:500 .88rem 'Inter',system-ui,sans-serif;background:transparent;border:1px solid transparent;color:#ebe1d0}
+.lia-library .lia-library-nav button[aria-pressed=true]{color:#fff2d5;background:#2b3f4e;border-color:#a68c61}
+.lia-library .lia-library-nav button:hover{border-color:var(--lib-gold)}
+.lia-library-pane{min-width:0;color:var(--lib-ink);background:var(--lib-paper);padding:clamp(1.2rem,3.5vw,3rem);border-radius:0 0 .5rem .5rem}
+.lia-library-pane h3,.lia-library-pane h4{color:#2e2a23;font-family:'Cormorant Garamond',Georgia,serif;line-height:1.15;letter-spacing:normal}
+.lia-library-pane h3{font-size:clamp(1.65rem,3vw,2.4rem);margin:0 0 .6rem}
+.lia-library-pane h4{font-size:1.45rem;margin:1.1rem 0 .6rem}
+.lia-library-pane p,.lia-library-pane li,.lia-library-pane blockquote{line-height:1.65;font-size:.97rem}
+.lia-library-pane>p,.lia-library-pane>section>p{max-width:74ch;margin:.65rem 0 1rem}
+.lia-library-pane label{display:grid;gap:.4rem;color:#373b35;margin:0;font:600 .86rem 'Inter',system-ui,sans-serif}
+.lia-library-pane input,.lia-library-pane select{width:100%;min-width:0;max-width:100%;min-height:46px;padding:.6rem .7rem;margin:0;color:var(--lib-ink);background:var(--lib-light);border:1px solid #8c816a;border-radius:4px;font:400 1rem 'Inter',system-ui,sans-serif}
+.lia-library-pane button{min-height:46px;padding:.65rem 1rem;border-radius:4px;border:1px solid #19564c;background:var(--lib-green);color:white;font:600 .88rem 'Inter',system-ui,sans-serif}
+.lia-library-pane button:hover{background:#104b42}
+.lia-library :is(button,a,input,select,summary):focus-visible,.lia-document:focus{outline:3px solid #20788d;outline-offset:3px}
+.lia-library-pane .lia-library-search,.lia-library-pane .lia-filters{display:flex;align-items:end;gap:1rem;margin:1.35rem 0;flex-wrap:wrap}
+.lia-library-search label{flex:1 1 14rem}.lia-library-search button{flex:none}
+.lia-filters label{flex:1 1 10rem}.lia-filters .lia-reset{background:transparent;color:var(--lib-green);border:1px solid #77948b}
+.lia-library [role=status]:empty{display:none}.lia-library-pane [role=status]{margin:1rem 0;color:#28554b;font-size:.9rem}
+.lia-library-body>[role=status]:not(:empty),.lia-library-body>[role=alert]{margin:.75rem 1.2rem;padding:.8rem 1rem}
+.lia-library [role=alert]{background:#f8e4d6;color:#702323;border-left:3px solid #994b40}
+.lia-document-grid,.lia-citations{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,17rem),1fr));gap:1rem;list-style:none;padding:0;margin:1rem 0}
+.lia-document{display:flex;flex-direction:column;min-width:0;background:var(--lib-light);color:var(--lib-ink);border:1px solid var(--lib-rule);border-top:3px solid #9c8252;border-radius:3px;padding:clamp(1rem,2vw,1.45rem);scroll-margin:1.25rem}
+.lia-document-meta{display:flex;justify-content:space-between;gap:.4rem;flex-wrap:wrap;color:#615340;font:500 .77rem/1.45 'IBM Plex Mono',monospace}
+.lia-document .lia-author{margin:.1rem 0 .5rem;color:#514e44}
+.lia-facts,.lia-library .wikidata-facts{display:flex;flex-wrap:wrap;gap:.8rem 1.25rem;margin:1rem 0}
+.lia-library dt{font:600 .73rem 'Inter',system-ui,sans-serif;color:#5c5143}
+.lia-library dd{font-size:.9rem;margin:.12rem 0 0}
+.lia-library-pane a{color:#23544d;text-underline-offset:.2em}
+.lia-original{align-self:start;display:inline-block;margin-top:auto;padding:.65rem 0 .1rem;font-size:.9rem;font-weight:600}
+.lia-citations blockquote{border-inline-start:2px solid var(--lib-gold);margin:.5rem 0;padding:0 .8rem}
+.lia-library summary{min-height:44px;padding:.7rem 0;cursor:pointer;font:600 .93rem/1.45 'Inter',system-ui,sans-serif;color:#35483e}
+.lia-tools,.lia-timeline{border-block:1px solid var(--lib-rule);padding:.3rem 0;margin:1rem 0}
+.lia-library-pane fieldset{min-width:0;margin:.5rem 0;border:1px solid var(--lib-rule);padding:1rem}
+.lia-library-pane legend{padding:0 .5rem;color:#4f4b40}
+.lia-form-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,12rem),1fr));gap:1rem;margin:1rem 0}
+.lia-timeline ol{display:flex;gap:0;overflow-x:auto;list-style:none;padding:.7rem .4rem;margin:.3rem 0;scroll-snap-type:x proximity}
+.lia-timeline li{position:relative;min-width:13rem;flex:1 0 13rem;border-top:1px solid #8c7a58;scroll-snap-align:start;padding:.8rem 1rem 0 .1rem}
+.lia-timeline li::before{content:'';position:absolute;left:0;top:-4px;width:7px;height:7px;border-radius:50%;background:#876423}
+.lia-timeline time{display:block;color:var(--lib-green);font:600 .92rem 'IBM Plex Mono',monospace;margin:.3rem 0}
+.lia-timeline li a{display:inline-block;line-height:1.45}
+.lia-library .wikidata-entry{border:1px solid var(--lib-rule);background:var(--lib-light);padding:1rem;margin:.8rem 0;color:var(--lib-ink)}
+.lia-library .wikidata-facts div{background:none;padding:0;border:0}
+.lia-library .wikidata-caution,.lia-library .wikidata-credit{color:#4b4437;background:none}
+@media(max-width:650px){
+  .lia-library-gate{gap:.75rem}.lia-gate-mark{width:2.3rem;height:2.3rem;font-size:1.7rem}
+  .lia-library-nav{display:grid;grid-template-columns:1fr 1fr}.lia-library-search button{width:100%}
+  .lia-timeline ol{display:block;overflow:visible}.lia-timeline li{min-width:0;max-width:none;border-top:0;border-left:1px solid #8c7a58;padding:0 0 1rem 1rem}
+  .lia-timeline li::before{left:-4px;top:.35rem}.lia-timeline time{margin:0 0 .25rem}
+}

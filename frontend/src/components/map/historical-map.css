@@ -1,0 +1,65 @@
+.folio-atlas {
+  color: #f4ebdd; background: #111c28; border: 1px solid #514d45;
+  border-radius: .65rem; padding: clamp(1rem, 2.7vw, 2.6rem);
+  scroll-margin-block: 1.5rem;
+}
+.folio-atlas__heading {display:flex; justify-content:space-between; align-items:end; flex-wrap:wrap; gap:1rem; margin-bottom:1.4rem}
+.folio-atlas__heading h2 {margin:0; color:#f4ebdd; font:500 clamp(2rem,3.2vw,3.35rem)/1.05 'Cormorant Garamond',Georgia,serif}
+.folio-atlas__heading p,.folio-atlas__detail p {margin:.45rem 0 0; color:#d1c9be; max-width:55ch; font:400 .94rem/1.5 Inter,system-ui,sans-serif}
+.folio-atlas__tools {display:flex; align-items:center; gap:.12rem; color:#ead4ad; border:1px solid #5b554a; border-radius:.35rem; padding:2px}
+.folio-atlas .folio-atlas__tools button {display:grid;place-items:center; min-width:42px;min-height:40px; background:transparent; border:0; border-radius:3px; padding:.25rem .6rem;color:#f4ebdd;font:400 1.35rem/1 Inter,system-ui,sans-serif}
+.folio-atlas .folio-atlas__tools .folio-atlas__reset {border-left:1px solid #5b554a; border-radius:0; font:500 .8rem Inter,system-ui,sans-serif}
+.folio-atlas__tools output {min-width:5ch;text-align:center; font:400 .78rem 'IBM Plex Mono',monospace}
+.folio-atlas button:disabled {opacity:.48;cursor:default}
+.folio-atlas button:not(:disabled):hover {background-color:#253847}
+.folio-atlas__spread {display:grid;grid-template-columns:minmax(0,1fr) minmax(215px,26%);background:#0d1721; border:1px solid #62523c}
+.folio-atlas__viewport {
+  position:relative; min-width:0; width:100%; align-self:center;
+  display:flex; flex-direction:column; aspect-ratio:5 / 2; min-height:150px;
+  overflow:auto; scrollbar-color:#806b4b #13212d; touch-action:pan-x pan-y pinch-zoom;
+}
+.folio-atlas__viewport[data-zoomed=true] {cursor:grab; overscroll-behavior-x:contain}
+.folio-atlas__viewport[data-zoomed=true]:active {cursor:grabbing}
+.folio-atlas__sheet.scene {
+  position:relative; flex:none; margin-block:auto; width:calc(100% * var(--atlas-scale));
+  aspect-ratio:5 / 2; background:#14202b;
+}
+.folio-atlas__sheet.scene img {display:block;width:100%;height:auto;user-select:none;pointer-events:none}
+.folio-atlas .folio-atlas__point {position:absolute;display:grid;place-items:center; translate:-50% -50%; width:44px;height:44px;min-width:0;min-height:0;padding:0;border:0;border-radius:50%;background:transparent;overflow:visible}
+.folio-atlas .folio-atlas__point:hover {background:transparent}
+.folio-atlas__point::before {content:'';width:13px;height:13px;border:2px solid #edcf99; background:#172536;border-radius:50%;box-shadow:0 0 0 3px #222831}
+.folio-atlas__point[aria-pressed=true]::before {background:#1c7169;box-shadow:0 0 0 4px #edd3a3,0 0 0 7px #1725368c}
+.folio-atlas__point span {position:absolute;bottom:100%;left:50%;transform:translateX(-50%);pointer-events:none;white-space:nowrap;color:#fff1cd;background:#14202b;border:1px solid #9e8357;border-radius:3px;padding:4px 8px;font:500 .85rem/1.2 Inter,system-ui,sans-serif}
+.folio-atlas__point[data-name=Amaral] span {top:100%;bottom:auto}
+.folio-atlas__legend {border-left:1px solid #62523c;padding:clamp(.9rem,1.6vw,1.5rem);align-self:stretch}
+.folio-atlas__legend h3 {margin:0 0 1rem;font:500 1.3rem/1.2 'Cormorant Garamond',Georgia,serif;color:#f4ebdd}
+.folio-atlas__legend ul {list-style:none;padding:0;margin:0}
+.folio-atlas__legend li+li {border-top:1px solid #394550}
+.folio-atlas__legend li button {width:100%;padding:.65rem 0;display:flex;align-items:center;justify-content:space-between;gap:.5rem;text-align:left;color:#e8c98c;background:transparent;border:0;min-height:44px}
+.folio-atlas__legend strong {display:block;font:500 1.1rem Georgia,serif}
+.folio-atlas__legend small {font:400 .78rem/1.4 Inter,system-ui,sans-serif;color:#d7d0c4}
+.folio-atlas__detail {margin-top:1rem;border-top:1px solid #62523c;padding-top:.85rem}
+.folio-atlas__detail h4 {margin:0;color:#f4ebdd;font:500 1.1rem Georgia,serif}
+.folio-atlas__detail p {font-size:.84rem}
+.folio-atlas__detail button {padding:.4rem 0;min-height:44px;border:0;background:none;color:#e8c98c;font:500 .84rem Inter,system-ui,sans-serif;text-decoration:underline;text-underline-offset:3px}
+.folio-atlas :focus-visible,.folio-atlas:focus-visible {outline:3px solid #ffe0a3;outline-offset:2px}
+.folio-atlas__viewport:focus-visible {outline-offset:-3px}
+@media(max-width:710px) {
+  .folio-atlas__spread {grid-template-columns:minmax(0,1fr)}
+  .folio-atlas__legend {border-left:0;border-top:1px solid #62523c}
+  .folio-atlas__legend ul {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.2rem}
+  .folio-atlas__legend li+li {border-top:0}
+}
+@media(prefers-reduced-motion:no-preference) {
+  .folio-atlas__point::before {transition:background-color 150ms,box-shadow 150ms}
+}
+
+/* Give nearby places separate touch targets on narrow maps. The dot stays
+   at its image coordinate while the label extends away from its neighbour. */
+@media(max-width:900px) {
+  .folio-atlas .folio-atlas__point {width:auto;min-width:44px;padding-inline:10px;translate:0 -50%;margin-left:-4px}
+  .folio-atlas .folio-atlas__point[data-name=Amaral] {translate:-100% -50%;margin-left:4px}
+  .folio-atlas__point::before {position:absolute;left:4px;translate:-50% 0}
+  .folio-atlas__point[data-name=Amaral]::before {left:calc(100% - 4px)}
+  .folio-atlas__point span,.folio-atlas__point[data-name=Amaral] span {position:relative;inset:auto;transform:none;padding:3px 5px}
+}

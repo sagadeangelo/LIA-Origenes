@@ -1,0 +1,92 @@
+/* The reading room is continuous; only the source sheet casts a paper shadow. */
+.archive-content:has(.exhibit-legacy) {--exhibit-inset:clamp(1.15rem,5.5vw,5.5rem)}
+.archive-content .parchment:has(.exhibit-paper) {margin-inline:calc(-1 * var(--gap));overflow:visible}
+.lo-folio:has(.exhibit-paper) {border:0;padding:0;background:#e6d9c1}
+#raices {
+  display:grid;grid-template:1fr / 1fr;text-align:center;min-height:clamp(445px,64vh,670px);
+  padding:1.5rem var(--exhibit-inset) 3rem;align-items:end;
+  background:radial-gradient(ellipse at 50% 43%,#2b473d 0%,#142923 25%,#0e1e22 54%,#0c171e 83%);
+}
+#raices::before {inset:5% 3%;border:0;border-block:1px solid #bba16866;
+  background-image:radial-gradient(1.5px 1.5px at 29% 43%,#ecc37c 80%,transparent),
+   radial-gradient(2px 2px at 71% 29%,#ecc37c 80%,transparent),radial-gradient(1.5px 1.5px at 36% 13%,#ecc37c 80%,transparent),
+   radial-gradient(1px 1px at 78% 64%,#beae8c 80%,transparent)}
+#raices>div {grid-area:1/1;position:relative;z-index:2;align-self:end}
+#raices .lo-folio__label {justify-content:center;letter-spacing:.22em;font-size:.72rem}
+#raices .lo-folio__label::after {content:'';width:2.5rem;border-top:1px solid}
+#raices #record-title {font-size:clamp(4rem,9vw,9rem);line-height:1.05}
+#raices .lo-folio__epigraph {margin:.15rem auto 0}
+#raices .lo-folio__tree {position:absolute;top:3%;left:50%;transform:translateX(-50%);width:min(41%,435px);margin:0}
+#raices .legacy-tree img {filter:grayscale(1) invert(1) sepia(1) saturate(1.25) brightness(1.18)}
+#raices .lo-folio__tree figcaption {font-size:.66rem;margin:0}
+.exhibit-index {display:flex;justify-content:center;flex-wrap:wrap;gap:.25rem 2rem;background:#0e1b20;border-bottom:1px solid #8f7850}
+.exhibit-index a {display:grid;align-items:center;min-height:48px;padding-inline:.25rem;color:#efd9af;text-decoration:none;font:500 .92rem var(--serif)}
+.exhibit-index a:hover {text-decoration:underline;text-underline-offset:.4em}
+.exhibit-paper {position:relative;isolation:isolate;padding:clamp(2rem,5vw,5rem) var(--exhibit-inset);color:#352d20;
+  background:linear-gradient(93deg,#d5c3a5,#f4ead6 12%,#eee4ce 72%,#ddcfb4)}
+.exhibit-paper::before {content:'';position:absolute;inset:0 0 0 62%;opacity:.1;z-index:-1;background:url('/art/portal-1.webp') 90% center/cover;mask-image:linear-gradient(90deg,transparent,black)}
+.lo-folio .exhibit-paper>h3 {font:italic 500 clamp(2.4rem,5.6vw,5rem)/1 var(--serif);color:#403623;margin:0 0 1.5rem}
+.exhibit-paper .lo-folio__body {margin:0;grid-template-columns:minmax(0,.94fr) minmax(0,1.06fr);align-items:center}
+.exhibit-paper .lo-folio__reading {position:relative;isolation:isolate;background:#fffaed;padding:clamp(1.1rem,2.6vw,2.5rem);border:1px solid #bba986;box-shadow:4px 6px 0 #d5c4a3,5px 7px 0 #af9b75,7px 14px 18px #47371f23}
+.exhibit-paper .lo-folio__summary {font-size:clamp(1.2rem,2vw,1.55rem)}
+.exhibit-paper .lo-folio__summary::first-letter {float:left;font:500 3.7rem/.85 var(--serif);margin:.12rem .16rem 0 0;color:#695030}
+.exhibit-paper .folio-resources,.exhibit-paper .lo-folio__download {margin-inline:0}
+.lo-folio #portal {margin:0;border:0;padding:clamp(2rem,5vw,4.5rem) var(--exhibit-inset);background:#101c25;color:#f5e8ce}
+.lo-folio #time-title {font:500 clamp(2.65rem,5.8vw,5.5rem)/1 var(--serif);color:#f5e8ce}
+#portal .time-intro {color:#cfcdc3}
+#portal .time-rail {margin:2rem 0 1rem;gap:0}
+#portal .time-rail button {color:#c9c6bc;min-height:58px;border-top-color:#716650}
+#portal .time-rail button[aria-pressed=true]{color:#ffe5ae;border-color:#e3ba72}
+#portal .time-rail button[aria-pressed=true]::before {background:#f6d292;box-shadow:0 0 0 3px #132129,0 0 0 4px #b89861}
+#portal .time-reading {position:relative;isolation:isolate;display:grid;align-items:end;min-height:clamp(330px,31vw,470px);border:0;background:#122029;color:#fff2d8}
+#portal .time-scene {position:absolute;inset:0;z-index:-1}
+#portal .time-scene img {object-fit:cover}
+#portal .time-scene::after {background:linear-gradient(90deg,#081319f5,#0d171bcf 35%,#0d171b66 58%,transparent 79%),linear-gradient(0deg,#09171aaa,transparent 60%)}
+#portal .time-scene span {inset:1rem 1.5rem auto auto;text-shadow:0 1px 7px #000;font-size:1.3rem;background:#102029cf;padding:.12em .4em}
+#portal .time-copy {padding:clamp(1.5rem,3.5vw,3.5rem);max-width:38rem}
+#portal .time-copy small {font:.76rem var(--mono);color:#f8dfb0}
+#portal .time-copy h4 {margin:.6rem 0;font:500 clamp(1.8rem,3vw,3.1rem)/1.04 var(--serif)}
+#portal .time-copy :is(a,.time-reference) {color:#ffdd9f}
+.map-leader {position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.map-leader path {stroke:#e4cf9c;stroke-width:1.5px;vector-effect:non-scaling-stroke;fill:none;stroke-dasharray:4 4}
+.archive-content:has(.exhibit-legacy) .folio-atlas {border:0;border-radius:0;margin:0 calc(-1 * var(--gap));padding:clamp(2rem,5vw,4rem) var(--exhibit-inset);background:linear-gradient(155deg,#13242b,#1e3539)}
+.archive-content:has(.exhibit-legacy) .folio-atlas__legend {position:relative;z-index:1;background:#10232a;box-shadow:-8px 8px 16px #0712163b}
+.exhibit-legacy {margin-inline:calc(-1 * var(--gap));color-scheme:dark}
+.exhibit-legacy .lo-heraldry {margin:0;border:0;padding:clamp(2rem,6vw,6rem) var(--exhibit-inset);
+  grid-template-columns:1fr 1fr;background:linear-gradient(95deg,#0c171df5 20%,#11202de6 55%,#0e1b20ab),url('/art/sala-de-lectura.webp') center/cover}
+.exhibit-legacy .lo-heraldry__plate {width:min(100%,370px);grid-column:1;grid-row:1}
+.exhibit-legacy .lo-heraldry__copy {grid-column:2;grid-row:1}
+.exhibit-legacy .lo-heraldry__frame {min-height:300px;box-shadow:0 16px 50px #060c1090,inset 0 0 35px #0b0c0d80}
+.exhibit-legacy .lo-heraldry__frame img {width:min(64%,220px)}
+.exhibit-legacy #ediciones {color:#322a20;color-scheme:light;padding-inline:var(--exhibit-inset)}
+.exhibit-legacy #ediciones button {color:#f4ead4}
+@media(max-width:760px){
+ #raices {min-height:430px}#raices .lo-folio__tree {width:min(70%,320px)}
+ .exhibit-index {gap:0 .7rem}.exhibit-index a {font-size:.85rem}
+ .exhibit-paper .lo-folio__body {grid-template-columns:1fr;gap:1.25rem}
+ #portal .time-reading {min-height:400px}
+ #portal .time-scene::after {background:linear-gradient(0deg,#07151afa 0%,#08151aeb 45%,#0c181c22 80%)}
+ .exhibit-legacy .lo-heraldry {display:flex;flex-direction:column;align-items:stretch}
+ .exhibit-legacy .lo-heraldry__plate {width:min(100%,300px)}
+}
+@media(prefers-reduced-motion:no-preference){
+ #raices .legacy-tree img {animation:canopy-rise 1.35s ease-out both}
+ @keyframes canopy-rise {from{clip-path:inset(90% 0 0);opacity:.45}to{clip-path:inset(0);opacity:1}}
+ #portal .time-scene {animation:period-dissolve .55s ease-out both}
+ @keyframes zoom-light {from{filter:brightness(.86)}to{filter:brightness(1)}}
+ @keyframes period-dissolve {from{opacity:.35;transform:scale(1.025)}to{opacity:1;transform:scale(1)}}
+ .folio-atlas__sheet[data-scale]:not([data-scale="1"]) img {animation:zoom-light .22s ease-out}
+ @supports(animation-timeline:view()){
+   .exhibit-paper .lo-folio__reading,.exhibit-legacy .lo-heraldry__frame {animation:legacy-arrive linear both;animation-timeline:view();animation-range:entry 0% entry 60%}
+ }
+}
+/* Keep the engraving and the caption in normal flow at short viewport heights. */
+#raices {grid-template: auto auto / 1fr;align-content:center;row-gap:clamp(.9rem,2vh,1.6rem);padding-block:clamp(2rem,4vh,3rem)}
+#raices .lo-folio__tree {position:relative;inset:auto;transform:none;grid-area:1/1;width:min(53%,22rem);justify-self:center}
+#raices>div {grid-area:2/1}
+#raices #record-title {scroll-margin-top:min(46vh,22rem)}
+@media(max-width:620px){#raices .lo-folio__tree {width:min(76%,16rem)}}
+@media(prefers-reduced-motion:no-preference){
+ .folio-atlas__point[aria-pressed=true]::after {content:'';position:absolute;inset:6px;pointer-events:none;border-radius:50%;border:1px solid #f4d293;animation:atlas-echo .5s ease-out forwards}
+ @keyframes atlas-echo {from{opacity:.75}to{opacity:0;transform:scale(1.45)}}
+}

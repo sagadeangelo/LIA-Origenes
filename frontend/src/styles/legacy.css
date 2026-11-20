@@ -1,0 +1,91 @@
+/* Engraved frontispiece, paper reading surface and an instrument-like time dial. */
+.parchment {padding:0;background:transparent}
+.lo-folio {--leaf-pad:clamp(1.2rem,4vw,4rem);padding:0 0 var(--leaf-pad);border-color:#8f7954;background:#f4ebdd}
+.lo-folio__masthead {
+  position:relative;isolation:isolate;overflow:hidden;padding:clamp(2rem,5vw,5rem) var(--leaf-pad);
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:1rem;
+  background:radial-gradient(ellipse at 76% 55%,#29463e 0%,#132a29 32%,#0c191c 70%);
+  border-bottom:3px double #b29a6f;color:#f6ead5;
+}
+.lo-folio__masthead::before {
+  content:'';position:absolute;inset:12px;z-index:-1;pointer-events:none;border:1px solid #c5a26c45;
+  background-image:radial-gradient(1.8px 1.8px at 66% 23%,#f6ce85 89%,transparent),
+    radial-gradient(1px 1px at 42% 72%,#c8c09d 89%,transparent),radial-gradient(2px 2px at 92% 57%,#efc579 89%,transparent),
+    linear-gradient(transparent 75%,#b1a47311 75.3%,transparent 75.6%);
+}
+.lo-folio .lo-folio__label {color:#dfc48d;display:flex;align-items:center;gap:.8rem}
+.lo-folio__label::before {content:'';width:2.5rem;border-top:1px solid currentColor}
+.lo-folio #record-title {color:#f6e4c2;font-size:clamp(3rem,7.8vw,8.1rem);text-shadow:0 1px 23px #e4b66b33}
+.lo-folio__epigraph {color:#e2ceb0}
+.lo-folio__tree {position:relative;isolation:isolate;margin:0 auto;width:min(100%,27rem)}
+.legacy-tree {position:relative;margin:1rem 0}
+.legacy-tree::before {
+  content:'';position:absolute;width:73%;aspect-ratio:1;left:50%;top:50%;transform:translate(-50%,-50%);
+  border-radius:50%;border:1px solid #d4bc805c;outline:1px dashed #c3ae704d;outline-offset:7px;
+  background:radial-gradient(circle,transparent 64%,#e0bb7729 64.3%,transparent 65%);
+}
+.legacy-tree img {position:relative;width:100%;max-width:none;mix-blend-mode:screen;
+  filter:grayscale(1) invert(1) sepia(1) saturate(1.2) brightness(1.65);mask-image:radial-gradient(ellipse,#000 59%,transparent 77%)}
+.legacy-roots {position:absolute;inset:0;width:100%;height:100%;color:#f1bc6d;filter:drop-shadow(0 0 2px #eeab65)}
+.lo-folio__tree figcaption {position:relative;color:#dbc9a9;margin-top:1rem}
+.lo-folio__body,.time-gallery,.lo-folio .folio-resources {margin-inline:var(--leaf-pad)}
+.lo-folio .lo-folio__download {margin-left:var(--leaf-pad);max-width:calc(100% - 2 * var(--leaf-pad))}
+.time-gallery {border-block:1px solid #b9a788;padding-block:clamp(1.25rem,3vw,2.25rem);margin-bottom:1rem}
+.lo-folio .time-gallery h3 {font-size:clamp(1.9rem,3.5vw,3rem);margin-bottom:.4rem}
+.time-intro,.time-copy p {font:.95rem/1.58 var(--ui);max-width:70ch}
+.time-rail {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin:1.3rem 0}
+.time-rail button {position:relative;min-height:52px;border:0;border-top:1px solid #ad9b77;border-radius:0;
+  background:transparent;color:#584a38;text-align:left;font:500 clamp(.86rem,1.8vw,1.25rem) var(--serif);padding:.85rem .25rem .3rem}
+.time-rail button::before {content:'';position:absolute;left:3px;top:-4px;width:7px;height:7px;transform:rotate(45deg);background:#8d7958}
+.time-rail button[aria-pressed=true] {color:#174d45;border-color:#235d52;font-weight:700}
+.time-rail button[aria-pressed=true]::before {background:#176458;box-shadow:0 0 0 3px #f4ebdd,0 0 0 4px #977d48}
+.time-reading {display:grid;grid-template-columns:minmax(0,2fr) minmax(0,3fr);border:1px solid #b9a788;background:#faf5e9}
+.time-scene {position:relative;min-height:11rem;overflow:hidden;background:#10201e}
+.time-scene img {position:absolute;width:100%;height:100%;object-fit:cover}
+.time-scene::after {content:'';position:absolute;inset:0;background:linear-gradient(transparent 25%,#071615d9)}
+.time-scene[data-era="2"]::after {background:repeating-linear-gradient(90deg,transparent 0 21px,#add9cf27 22px 23px),linear-gradient(transparent,#071615eb)}
+.time-scene span {position:absolute;inset:auto 1rem 1rem;z-index:1;color:#fff0d4;font:italic 500 1.6rem var(--serif)}
+.time-copy {padding:clamp(1rem,2.4vw,2rem)}
+.time-copy h4 {margin:0 0 .45rem;font:600 clamp(1.3rem,2.3vw,1.8rem)/1.12 var(--serif)}
+.time-copy a,.time-copy .time-reference {display:inline-block;margin-top:.8rem;font:.85rem/1.6 var(--ui);color:#315248}
+.lo-heraldry {position:relative;border-block:3px double #b39965}
+.lo-heraldry .lo-heraldry__frame {--glow:#486758;background:radial-gradient(ellipse at 50% 47%,var(--glow),#142127 72%);border-radius:48% 48% 3px 3px;min-height:230px}
+.lo-heraldry .lo-heraldry__frame[data-palette=carmesi]{--glow:#724b47}.lo-heraldry .lo-heraldry__frame[data-palette=azul]{--glow:#3f5b7c}
+.lo-heraldry__frame::before {border-radius:inherit;inset:7px}
+.lo-heraldry__frame img {position:relative}
+#ediciones {padding:clamp(1rem,3.8vw,3rem);background:#ede3d1;border-bottom:3px double #a78c59}
+#ediciones .products-title {margin:0;font-size:clamp(1.9rem,4vw,3.4rem)}
+.products .edition {border-radius:1px;box-shadow:inset 4px 0 #c6b993,0 6px 12px #29200f10}
+.folio-atlas .folio-atlas__point[aria-pressed=true]::before {box-shadow:0 0 0 3px #edd3a3,0 0 0 7px #1725368c,0 0 16px 6px #ecc48177}
+.folio-atlas__detail {background:linear-gradient(100deg,#caa76c10,transparent);padding-inline:.7rem}
+.archive-piece {position:relative;box-shadow:inset 4px 0 #cebf9f,0 5px 12px #342b1910}
+.archive-piece .archive-review {color:#77532e;text-decoration:underline dotted;text-underline-offset:4px}
+@media(max-width:620px){
+  .lo-folio__masthead {grid-template-columns:1fr;text-align:center;padding-top:2.1rem;gap:.5rem}
+  .lo-folio__masthead .lo-folio__label {justify-content:center}
+  .lo-folio__epigraph {margin-inline:auto}
+  .lo-folio__tree {width:min(80%,14.5rem)}
+  .time-reading {grid-template-columns:1fr}.time-scene {min-height:7.5rem}
+  .lo-heraldry .lo-heraldry__frame {min-height:185px}
+}
+@media(prefers-reduced-motion:no-preference){
+  .lo-folio #record-title,.time-scene,.lo-heraldry__frame img,.folio-atlas__detail h4 {animation:legacy-arrive .48s ease-out both}
+  .legacy-roots path {stroke-dasharray:1;animation:legacy-trace 1.4s ease-out both}
+  .legacy-roots path:nth-child(2){animation-delay:.24s}.legacy-roots path:nth-child(3){animation-delay:.45s}
+  .lo-folio__masthead::before {animation:legacy-light 1.6s ease-out both}
+  .archive-piece {transition:transform .22s,box-shadow .22s}
+  @media(hover:hover){.archive-piece:hover,.archive-piece:focus-within {transform:translateY(-3px);box-shadow:inset 4px 0 #aa9367,0 9px 20px #342b1920}}
+  @supports(animation-timeline:view()){
+    .time-reading {animation:legacy-arrive linear both;animation-timeline:view();animation-range:entry 0% entry 45%}
+  }
+  @keyframes legacy-trace {from{stroke-dashoffset:1;opacity:.15}to{stroke-dashoffset:0;opacity:1}}
+  @keyframes legacy-arrive {from{opacity:.75;transform:translateY(7px)}to{opacity:1;transform:translateY(0)}}
+  @keyframes legacy-light {from{opacity:.2}to{opacity:1}}
+}
+.folio-original {display:flex;align-items:center;gap:1.2rem;margin:.6rem 0 1rem;padding:clamp(.8rem,2vw,1.6rem);
+  border:1px solid #bcab8c;background:#fcf6e9;box-shadow:3px 3px 0 #ded0b4}
+.folio-initial {display:grid;place-items:center;flex:none;width:clamp(3rem,8vw,6rem);aspect-ratio:3/4;
+  background:#283e39;color:#ebcf92;border:4px double #9d8d63;font:500 clamp(2rem,5vw,4rem) var(--serif)}
+.folio-original h4 {font:600 clamp(1.25rem,2vw,1.6rem)/1.2 var(--serif);margin:.35rem 0}
+.folio-original small,.folio-original p {font:.8rem/1.5 var(--mono);color:#5d5041}
+.folio-original a {font:600 .87rem/1.5 var(--ui);color:#2d5047}

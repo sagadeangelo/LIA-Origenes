@@ -107,7 +107,7 @@ export default function WikidataSurname({surname}) {
         <p role="alert">{state.error}</p>
       )}
 
-      {state.missing && (
+      {(state.missing || (!state.loading && !state.error && state.records.length === 0)) && (
         <p role="status">
           No hay un registro Wikidata almacenado para este apellido.
           Esto no significa que el apellido carezca de historia.
